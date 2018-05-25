@@ -1,0 +1,10 @@
+{
+  "name": "01indecision_app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "global": "^4.3.2",
+    "live-server": "^1.2.0"
+  }
+}
