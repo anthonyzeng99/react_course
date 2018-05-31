@@ -15,7 +15,6 @@ class Counter extends React.Component {
       }
     });
   }
-
   handleMinusOne() {
     this.setState((prevState) => {
       return {
@@ -23,7 +22,6 @@ class Counter extends React.Component {
       }
     });
   }
-
   handleReset() {
     this.setState(() => {
       return {
