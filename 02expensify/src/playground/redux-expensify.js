@@ -1,6 +1,7 @@
 import { createStore, combineReducers } from 'redux';
 import uuid from 'uuid';
 
+// Expense Actions
 const addExpense = (
   {
     description = '',
@@ -11,7 +12,7 @@ const addExpense = (
 ) => ({
   type: 'ADD_EXPENSE',
   expense: {
-    _id: uuid(),
+    id: uuid(),
     description,
     note,
     amount,
@@ -19,9 +20,15 @@ const addExpense = (
   }
 });
 
-const removeExpense = ({_id}) => ({
+const removeExpense = ({id} = {}) => ({
   type: 'REMOVE_EXPENSE',
-  _id
+  id
+});
+
+const editExpense = (id, updates) => ({
+  type: 'EDIT_EXPENSE',
+  id,
+  updates
 });
 
 // Expenses reducer
@@ -32,11 +39,26 @@ const expensesReducer = (state = expensesReducerDefaultState , action) => {
     case 'ADD_EXPENSE':
       return [...state, action.expense];
     case 'REMOVE_EXPENSE':
-      return state.filter(( {_id} ) => _id != action._id);
+      return state.filter(( {id} ) => id != action.id);
+    case 'EDIT_EXPENSE':
+      return state.map((expense) => {
+        if (expense.id === action.id) {
+          return {...expense, ...action.updates};
+        }  else {
+          return expense;
+        }
+      })
     default:
       return state;
   }
 };
+
+// Filters actions
+
+const setTextFilter = (text = '') => ({
+  type: "SET_TEXT_FILTER",
+  text
+});
 
 // Filters reducers
 const filtersReducerDefaultState = {
@@ -48,6 +70,8 @@ const filtersReducerDefaultState = {
 
 const filtersReducer = (state = filtersReducerDefaultState, action) => {
   switch(action.type) {
+    case 'SET_TEXT_FILTER':
+      return {...state, text: action.text};
     default:
       return state;
   }
@@ -67,7 +91,16 @@ store.subscribe(() => {
 
 const expense0 = store.dispatch((addExpense({description:'rent', amount: 100})));
 const expense1 = store.dispatch((addExpense({description:'coffee', amount: 300})));
-store.dispatch(removeExpense({_id: expense0.expense._id}))
+store.dispatch(removeExpense({id: expense0.expense.id}));
+store.dispatch(
+  editExpense(
+      expense1.expense.id,
+      {amount: 500}
+  )
+);
+
+store.dispatch(setTextFilter('rent'));
+store.dispatch(setTextFilter());
 
 const demoState = {
   expenses: [{
