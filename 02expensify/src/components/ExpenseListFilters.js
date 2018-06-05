@@ -8,7 +8,7 @@ const ExpenseListFilters = ({ filters, dispatch }) => (
       type="text"
       defaultValue={filters.text}
       onChange={(e) => {
-        props.dispatch(setTextFilter(e.target.value));
+        dispatch(setTextFilter(e.target.value));
         console.log(e.target.value);
       }}
     />

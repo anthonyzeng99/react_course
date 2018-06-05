@@ -12,7 +12,7 @@ import getVisibleExpenses from './selectors/expenses';
 
 const store = configureStore();
 
-store.dispatch(addExpense({description: 'water bill', amount: 30000, createdAt:4000}));
+store.dispatch(addExpense({description: 'water bill', amount: 30000, createdAt:400000000}));
 store.dispatch(addExpense({description: 'gas bill', amount: 10000, createdAt:2000}));
 store.dispatch(addExpense({description: 'electric bill', amount: 20000, createdAt:3000}));
 store.dispatch(addExpense({description: 'rent', amount: 195000, createdAt:1000}));
