@@ -61,4 +61,4 @@ typings/
 .next
 
 # test shapshot files
-.snap
+.test.js.snap
