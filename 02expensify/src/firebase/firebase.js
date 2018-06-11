@@ -11,22 +11,26 @@ const database = firebase.database();
 database.ref().set({
   name: 'Anthony Zeng',
   age: 18,
-  isSingle: true,
+  job: {
+    title: 'Student',
+    company: 'NYU'
+  },
   location: {
     city: 'New York',
     country: 'United States'
-  }
+  },
+  stressLevel: 5
 }).then(() => {
   console.log('data saved');
 }).catch((e) => console.log(e));
 
-
-database.ref('age').set(18);
-database.ref('location/city').set('Boston');
-
-// database.ref('isSingle')
-// .remove()
-// .then(() => {
-//   console.log('data was removed')
-// })
-// .catch((e) => console.log('data was not removed'))
+database.ref().update({
+  name: 'Jack',
+  age: 20,
+  stressLevel: 7,
+  job: {
+    title: 'Software Intern',
+    company: 'Google'
+  },
+  'location/city': "San Francisco"
+});
