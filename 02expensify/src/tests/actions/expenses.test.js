@@ -52,7 +52,7 @@ test('should add expense to database and store', (done) => {
         ...expenseData
       }
     });
-    return database.ref(`expenses/${actions[0].expense.id}`).once('value')
+    return database.ref(`expenses/${actions[0].expense.id}`).once('value');
   }).then((snapshot) => {
     expect(snapshot.val()).toEqual(expenseData);
     done();
@@ -62,10 +62,10 @@ test('should add expense to database and store', (done) => {
 test('should add expense with defaults to database and store', () => {
   const store = createMockStore([]);
   const expenseDefault = {
-    description: 'mouse',
-    amount: 3000,
-    note: 'this one is better',
-    createdAt: 1000
+    description: '',
+    amount: 0,
+    note: '',
+    createdAt: 0
   }
   store.dispatch(startAddExpense({})).then(() => {
     const actions = store.getActions();
@@ -76,7 +76,7 @@ test('should add expense with defaults to database and store', () => {
         ...expenseDefault
       }
     });
-    return database.ref(`expenses/${actions[0].expense.id}`).once('value')
+    return database.ref(`expenses/${actions[0].expense.id}`).once('value');
   }).then((snapshot) => {
     expect(snapshot.val()).toEqual(expenseDefault);
     done();
