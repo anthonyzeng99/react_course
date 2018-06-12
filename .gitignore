@@ -61,3 +61,4 @@ typings/
 .next
 
 02expensify/public/dist/
+02expensify/src/firebase/config.js
