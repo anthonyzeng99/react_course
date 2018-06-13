@@ -61,4 +61,5 @@ typings/
 .next
 
 02expensify/public/dist/
-02expensify/src/firebase/config.js
+02expensify/.env.test
+02expensify/.env.development
